@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
+<canvas width="1060" height="550"></canvas>
+<script src="https://unpkg.com/d3-timer"></script>
+<link rel="stylesheet" type="text/css" href="login.css">
+
+
+<script>
+
+var words = "Welcome\nTo\nFlash\nRoulette!".split(/\s+/g);
+
+var canvas = document.querySelector("canvas"),
+    canvas2 = canvas.cloneNode(),
+    context = canvas.getContext("2d"),
+    context2 = canvas2.getContext("2d");
+    width = canvas.width,
+    height = canvas.height;
+
+context.font = context2.font = "250px helevtica";
+context.textAlign = context2.textAlign = "center";
+context.lineJoin = context2.lineJoin = "round";
+
+(function next() {
+  var i = 0.5, text = words.shift();
+  context.clearRect(0, 0, width, height);
+  context.fillText(text, width / 2, height / 2 + 100);
+  var timer = d3.timer(function() {
+    if (++i > text.length * 10) return timer.stop(), next();
+    context2.save();
+    context2.clearRect(0, 0, width, height);
+    context2.lineWidth = i & 1 ? i * 5 + 3 : i * 5;
+    context2.strokeStyle = i & 1 ? "white" : "#4169E1";
+    context2.strokeText(text, width / 2, height / 2 + 100);
+    context2.restore();
+    context2.drawImage(canvas, 0, 0);
+    context.drawImage(canvas2, 0, 0);
+  });
+})();
+
+</script>
+<br>
+<body>
+<div class="align">
+  <a class="button is-info is-large modal-button" data-target="modal-bis " 
+  id="loginButton">Create Account</a>
+</div>
+
+  <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title"><strong>Create Account</strong></p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+
+        <div class="container">
+            <div class ="block">
+            <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" type="email" placeholder="Email">
+            <span class="icon is-small is-left">
+              <i class="fa fa-envelope"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fa fa-check"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" type="password" placeholder="Password">
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock"></i>
+            </span>
+          </p>
+        </div>
+            </div>
+          </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-info">Login</button>
+      </footer>
+    </div>
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="login.js"></script>
+
+</body>
+
+</html>
