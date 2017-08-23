@@ -1,9 +1,15 @@
-$("#loginButton").click(function(){
-  $(".modal").toggleClass("is-active");  
+$("#createButton").click(function(){
+  $("#creaButton").toggleClass("is-active");  
 });
 
-$(".modal-background").click(function(){
-   $(".modal").toggleClass("is-active"); 
+$("#create-modal-background").click(function(){
+   $("#creaButton").toggleClass("is-active"); 
 })
 
+$("#loginButton").click(function(){
+  $("#logButton").toggleClass("is-active");  
+});
 
+$("#login-modal-background").click(function(){
+   $("#logButton").toggleClass("is-active"); 
+})

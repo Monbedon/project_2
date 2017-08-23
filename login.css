@@ -10,8 +10,10 @@ canvas {
 	width: 600px;
 }
 
-.align{
+.text{
 	position:relative;
 	text-align: center;
+	
+
 }
 

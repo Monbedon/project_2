@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="login.css">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <canvas width="1060" height="550"></canvas>
 <script src="https://unpkg.com/d3-timer"></script>
-<link rel="stylesheet" type="text/css" href="login.css">
+
 
 
 <script>
@@ -24,6 +27,9 @@ context.lineJoin = context2.lineJoin = "round";
 
 (function next() {
   var i = 0.5, text = words.shift();
+
+  if(!text) {return;}
+
   context.clearRect(0, 0, width, height);
   context.fillText(text, width / 2, height / 2 + 100);
   var timer = d3.timer(function() {
@@ -31,7 +37,7 @@ context.lineJoin = context2.lineJoin = "round";
     context2.save();
     context2.clearRect(0, 0, width, height);
     context2.lineWidth = i & 1 ? i * 5 + 3 : i * 5;
-    context2.strokeStyle = i & 1 ? "white" : "#4169E1";
+    context2.strokeStyle = i & 1 ? "white" : " #ff1a1a";
     context2.strokeText(text, width / 2, height / 2 + 100);
     context2.restore();
     context2.drawImage(canvas, 0, 0);
@@ -42,18 +48,21 @@ context.lineJoin = context2.lineJoin = "round";
 </script>
 <br>
 <body>
-<div class="align">
-  <a class="button is-info is-large modal-button" data-target="modal-bis " 
-  id="loginButton">Create Account</a>
+<div class="text">
+  <a class="button is-black is-large modal-button" data-target="modal-bis " 
+  id="createButton">Create Account</a>
+   <a class="button is-black is-large modal-button" data-target="modal-bis " 
+  id="loginButton">Login</a>
 </div>
 
-  <div class="modal">
-    <div class="modal-background"></div>
+  <div class="modal" id="creaButton">
+    <div class="modal-background" id= "create-modal-background" ></div>
     <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title"><strong>Create Account</strong></p>
         <button class="delete" aria-label="close"></button>
       </header>
+
       <section class="modal-card-body">
 
         <div class="container">
@@ -81,10 +90,51 @@ context.lineJoin = context2.lineJoin = "round";
           </div>
       </section>
       <footer class="modal-card-foot">
-        <button class="button is-info">Login</button>
+        <button class="button is-black">Create Account</button>
       </footer>
     </div>
   </div>
+
+  <div class="modal" id="logButton">
+    <div class="modal-background" id= "login-modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title"><strong>Login</strong></p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+
+      <section class="modal-card-body">
+
+        <div class="container">
+            <div class ="block">
+            <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" type="email" placeholder="Email">
+            <span class="icon is-small is-left">
+              <i class="fa fa-envelope"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fa fa-check"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" type="password" placeholder="Password">
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock"></i>
+            </span>
+          </p>
+        </div>
+            </div>
+          </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-black">Login</button>
+      </footer>
+    </div>
+  </div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="login.js"></script>
